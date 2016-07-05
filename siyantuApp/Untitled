@@ -1,0 +1,85 @@
+<View style = {styles.banners}>
+    <Image style = {styles.bannerImg} source={require('../../images/waimai/bg_banner.png')}/>
+</View>
+
+<View style = {styles.searchbox}>
+    <Image source = {require('../../images/waimai/icon_map.png')} />
+    <TextInput
+        style={styles.searchKey}
+        value={'三灶镇樱雪名苑'}
+    />
+    <Image source = {require('../../images/waimai/icon_search.png')}/>
+</View>
+
+
+
+<View style={{flex: 1,  backgroundColor: 'green'}}>
+    <View style={{ height: 20, backgroundColor: '#333333'}}>
+        <View style={[styles.circle, {position: 'absolute', top: 50, left: 180}]}>
+        </View>
+    </View>
+    <View>
+        <Text>aaaaaa</Text>
+    </View>
+</View>
+
+
+<View style={styles.container}>
+    <View>
+        <View style = {{flex: 1,justifyContent:'flex-start'}}>
+            <Image style = {styles.bannerImg} source={require('../../images/waimai/bg_banner.png')}/>
+        </View>
+        <View style={styles.searchbox}>
+            <View style={styles.cellfixed}></View>
+            <View style={styles.cell}></View>
+            <View style={styles.cellfixed}></View>
+        </View>
+
+    </View>
+
+</View>
+
+
+
+getImageSize(){
+  var height = Dimensions.get('window').height;
+  var width = Dimensions.get('window').width;
+  switch (height) {
+    case 480:
+      return {height:PixelRatio.get()*60};
+      break;
+    case 568:
+      console.log("inner");
+      return {height:PixelRatio.get()*85};
+      break;
+    case 667:
+      return {height:PixelRatio.get()*121};
+      break;
+    default:
+      return {height:PixelRatio.get()*180};
+  }
+
+}
+
+
+
+<View style={styles.container}>
+    <View style = {{flex:1, flexDirection:'row',borderWidth:1, borderColor:'#ff0000', alignItems:'flex-start'}}>
+        <Image style = {[styles.bannerImg,{flex:1,height:this.getRealHeight(this.props.bannerImgInitalHeight)}]} source={require('../../images/waimai/bg_banner.png')}/>
+    </View>
+</View>
+
+
+this is searchInner
+
+<View style = {{ flex:4,}}>
+    <Image style = {{ flex:1,}} source = {require('../../images/waimai/icon_map.png')} />
+    <TextInput
+        style={{height: 30, borderColor: 'gray', borderWidth: 1, fontSize: 13, color:'#ff0000'}}
+        onChangeText={(text) => this.setState({text})}
+        value={this.state.text}
+    />
+</View>
+<View style = {{ flex:1,}}>
+    <Image style = {{ flex:1,}} source = {require('../../images/waimai/icon_map.png')} />
+</View>

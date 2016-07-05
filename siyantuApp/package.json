@@ -1,0 +1,18 @@
+{
+  "name": "siyantuApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "react": "^15.0.2",
+    "react-native": "^0.26.2",
+    "react-native-button": "github:ide/react-native-button",
+    "react-native-custom-segmented-control": "latest",
+    "react-native-drawer": "^2.2.2",
+    "react-native-modalbox": "^1.3.3",
+    "react-native-picker": "^3.0.4",
+    "react-native-router-flux": "^3.26.5"
+  }
+}
