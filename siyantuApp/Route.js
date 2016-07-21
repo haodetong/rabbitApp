@@ -9,6 +9,7 @@ import NavigationDrawer from './components/NavigationDrawer'
 import Waimai from './js/page/Waimai'
 import Dingdan from './js/page/Dingdan'
 import Shenbian from './js/page/Shenbian'
+import ShenbianDetail from './js/page/ShenbianDetail';
 import Wode from './js/page/Wode'
 import getAdaptHeight from './js/component/getAdaptHeight';
 import getAdaptWidth from './js/component/getAdaptWidth';
@@ -29,6 +30,21 @@ import VerifyByPhone from './js/page/VerifyByPhone';
 import Payment from './js/page/Payment';
 import SearchProsBtn from './js/component/SearchProsBtn';
 import ProsFilterOptions from './js/page/ProsFilterOptions';
+import DingdanMore from './js/page/DingdanMore';
+import Myshaidan from './js/page/Myshaidan';
+import Ziliao from './js/page/Ziliao';
+import ZiliaoEdit from './js/page/ZiliaoEdit';
+import ZiliaoSaveBtn from './js/component/ZiliaoSaveBtn';
+import MyCoupon from './js/page/MyCoupon';
+import FoodCollect from './js/page/FoodCollect';
+import MyReceiptAddress from './js/page/MyReceiptAddress';
+import OnlineService from './js/page/OnlineService';
+import MyMessages from './js/page/MyMessages';
+import MyMessageDetail from './js/page/MyMessageDetail';
+import SystemSetting from './js/page/SystemSetting';
+import Comment from './js/page/Comment';
+import CommentSaveBtn from './js/component/CommentSaveBtn';
+import OrderCancel from './js/page/OrderCancel';
 
 
 const reducerCreate = params=>{
@@ -70,6 +86,62 @@ export default class Route extends React.Component {
 
                             <Scene key="productLists">
                                 <Scene key="prolists" component={ProLists} renderLeftButton={()=><PopButton/>} title="美食列表" renderRightButton={()=><SearchProsBtn/>} hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="FoodCollect">
+                                <Scene key="fdCollect" component={FoodCollect} renderLeftButton={()=><PopButton/>} title="美食收藏" hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="shenbianDetail">
+                                <Scene key="shbDetail" component={ShenbianDetail} renderLeftButton={()=><PopButton/>} title="晒单动态" hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="Myshaidan">
+                                <Scene key="myshaidan" component={Myshaidan} renderLeftButton={()=><PopButton/>} title="我的晒单" hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="Comment">
+                                <Scene key="comment" component={Comment} renderLeftButton={()=><PopButton/>} renderRightButton={()=><CommentSaveBtn/>} title="晒单评价" hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="OrderCancel">
+                                <Scene key="ddcancel" component={OrderCancel} renderLeftButton={()=><PopButton/>} title="申请取消" hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="Ziliao">
+                                <Scene key="ziliao" component={Ziliao} renderLeftButton={()=><PopButton/>} title="资料" hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="ZiliaoEdit">
+                                <Scene key="zledit" component={ZiliaoEdit} renderLeftButton={()=><PopButton/>} renderRightButton={()=><ZiliaoSaveBtn/>} title="资料修改" hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="MyCoupon">
+                                <Scene key="mycoupon" component={MyCoupon} renderLeftButton={()=><PopButton/>} title="优惠抵用券" hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="MyReceiptAddress">
+                                <Scene key="myReceiptAddr" component={MyReceiptAddress} renderLeftButton={()=><PopButton/>} title="管理收货地址" hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="OnlineService">
+                                <Scene key="onlineServ" component={OnlineService} renderLeftButton={()=><PopButton/>} title="在线客服" hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="MyMessages">
+                                <Scene key="messages" component={MyMessages} renderLeftButton={()=><PopButton/>} title="消息" hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="MyMessageDetail">
+                                <Scene key="messageDetail" component={MyMessageDetail} renderLeftButton={()=><PopButton/>} title="消息" hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="SystemSetting">
+                                <Scene key="sysSetting" component={SystemSetting} renderLeftButton={()=><PopButton/>} title="设置" hideTabBar={true} duration={800} />
+                            </Scene>
+
+                            <Scene key="dingdanMore">
+                                <Scene key="dingdanmore" component={DingdanMore} renderLeftButton={()=><PopButton/>} title="订单" hideTabBar={true} duration={800} />
                             </Scene>
 
                             <Scene key="searchPros">
