@@ -94,7 +94,7 @@ export default class ProductDetails extends React.Component{
                         </View>
 
                         <View style = {styles.proIntroduceBox}>
-                            <Button onPress={Actions.pop} containerStyle={styles.proIntroBtnContainer} style = {styles.proIntroButton}>
+                            <Button onPress={Actions.ProductInstruction} containerStyle={styles.proIntroBtnContainer} style = {styles.proIntroButton}>
                                 <View style = {styles.proIntroduce}>
                                     <View style = {styles.proIntroTitleBox}>
                                         <Text style = {styles.proIntroTitle}>商品详情</Text>

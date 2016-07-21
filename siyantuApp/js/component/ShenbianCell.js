@@ -7,7 +7,9 @@ import {AppRegistry, Navigator, StyleSheet, TouchableHighlight, TouchableNativeF
 import getImageSource from './getImageSource';
 import getAdaptHeight from '../component/getAdaptHeight';
 import getAdaptWidth from '../component/getAdaptWidth';
+
 import Button from 'react-native-button';
+import { Actions } from 'react-native-router-flux';
 
 export default class ShenbianCell extends React.Component{
   	render() {
@@ -44,11 +46,13 @@ export default class ShenbianCell extends React.Component{
                             <Text style = {styles.shbContent}>味道好极了，每次都是百吃不厌啊，这是治愈宅男宅女们的最好美食了~！</Text>
                         </View>
 
-                        <View style = {styles.shbShareImgsBox}>
-                            <Image source = {require('../../images/dingdan/dingdan_product.png')} style = {styles.shbShareImg} />
-                            <Image source = {require('../../images/dingdan/dingdan_product.png')} style = {styles.shbShareImg} />
-                            <Image source = {require('../../images/dingdan/dingdan_product.png')} style = {styles.shbShareImg} />
-                        </View>
+                        <Button onPress={Actions.shenbianDetail} containerStyle={styles.shbBtnContainer} style = {styles.shbButton}>
+                            <View style = {styles.shbShareImgsBox}>
+                                <Image source = {require('../../images/dingdan/dingdan_product.png')} style = {styles.shbShareImg} />
+                                <Image source = {require('../../images/dingdan/dingdan_product.png')} style = {styles.shbShareImg} />
+                                <Image source = {require('../../images/dingdan/dingdan_product.png')} style = {styles.shbShareImg} />
+                            </View>
+                        </Button>
 
                         <View style = {styles.commentProsBox}>
                             <View style = {styles.commentPros}>

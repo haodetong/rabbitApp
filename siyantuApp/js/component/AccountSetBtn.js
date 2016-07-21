@@ -1,10 +1,12 @@
 /*
-    我的 - 标签页 - 左上角 - 代表设置的图片按钮
+    我的 - 标签页 - 右上角 - 代表设置的图片按钮
 */
 import React from 'react';
 import {AppRegistry, Navigator, StyleSheet, TouchableHighlight, Text, Image, View,Animated} from 'react-native'
 import getAdaptHeight from './getAdaptHeight';
 import getAdaptWidth from './getAdaptWidth';
+import Button from 'react-native-button';
+import { Actions } from 'react-native-router-flux';
 
 export default class AccountSetBtn extends React.Component{
 
@@ -14,11 +16,11 @@ export default class AccountSetBtn extends React.Component{
 
     render() {
         return  <View style = {styles.acSetBtnBox}>
-                    <TouchableHighlight onPress={this._onPressAccountSetBtn} activeOpacity = {0.2} underlayColor = 'rgba(0, 0, 0, 0.3)'>
+                    <Button onPress={Actions.SystemSetting} containerStyle={styles.shbBtnContainer} style = {styles.shbButton}>
                         <View style = {styles.acSetBtn}>
                             <Image source = {require('../../images/wode/icon_account_set_btn.png')} style={styles.acSetBtnIcon} />
                         </View>
-                    </TouchableHighlight>
+                    </Button>
                 </View>
     }
 

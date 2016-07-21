@@ -5,14 +5,20 @@ import React from 'react';
 import {AppRegistry, Navigator, StyleSheet, TouchableHighlight, Text, Image, View,Animated} from 'react-native'
 import getAdaptHeight from './getAdaptHeight';
 import getAdaptWidth from './getAdaptWidth';
+import Button from 'react-native-button';
+import { Actions } from 'react-native-router-flux';
 
 export default class MyMessageBtn extends React.Component{
     render() {
         return  <View style = {styles.myMessageBtnBox}>
-                    <Image source = {require('../../images/wode/icon_my_message_btn.png')} style={styles.myMessageBtn} />
-                    <View style = {styles.myMessageCount}>
-                        <Text style = {styles.myMessageDigs}>3</Text>
-                    </View>
+                    <Button onPress={Actions.MyMessages} containerStyle={styles.shbBtnContainer} style = {styles.shbButton}>
+                        <View>
+                            <Image source = {require('../../images/wode/icon_my_message_btn.png')} style={styles.myMessageBtn} />
+                            <View style = {styles.myMessageCount}>
+                                <Text style = {styles.myMessageDigs}>3</Text>
+                            </View>
+                        </View>
+                    </Button>
                 </View>
     }
 }

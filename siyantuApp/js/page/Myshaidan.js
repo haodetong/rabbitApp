@@ -1,5 +1,5 @@
 /*
-    身边 - tab标签页
+    我的 - tab标签页 - 我的晒单页面
 */
 'use strict'
 import React from 'react';
@@ -16,7 +16,7 @@ var resultsCache = {
 
 var LOADING = {};
 
-export default class Shenbian extends React.Component{
+export default class Myshaidan extends React.Component{
 
   	//timeoutID: (null: any),
 

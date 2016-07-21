@@ -1,22 +1,22 @@
 /*
-    身边 - tab标签页
+    订单 - 标签页 - 订单列表
 */
 'use strict'
 import React from 'react';
 import {AppRegistry, Navigator, StyleSheet, Platform, ProgressBarAndroid, ListView, Text, Image, View, Animated} from 'react-native';
-import ShenbianCell from '../component/ShenbianCell';
+import DingdanCell from '../component/DingdanCell';
 import getAdaptHeight from '../component/getAdaptHeight';
 import getAdaptWidth from '../component/getAdaptWidth';
 
-var shenbian_url =   'http://api.meituan.com/group/v1/recommend/homepage/city/1?__skck=40aaaf01c2fc4801b9c059efcd7aa146&__skcy=mrUZYo7999nH8WgTicdfzaGjaSQ=&__skno=51156DC4-B59A-4108-8812-AD05BF227A47&__skts=1434530933.303717&__skua=bd6b6e8eadfad15571a15c3b9ef9199a&__vhost=api.mobile.meituan.com&ci=1&client=iphone&limit=40&movieBundleVersion=100&msid=48E2B810-805D-4821-9CDD-D5C9E01BC98A2015-06-17-14-50363&offset=0&position=39.982223,116.310502&userId=10086&userid=10086&utm_campaign=AgroupBgroupD100Fab_chunceshishuju__a__a___b1junglehomepagecatesort__b__leftflow___ab_gxhceshi__nostrategy__leftflow___ab_gxhceshi0202__b__a___ab_pindaochangsha__a__leftflow___ab_xinkeceshi__b__leftflow___ab_gxtest__gd__leftflow___ab_gxh_82__nostrategy__leftflow___ab_pindaoshenyang__a__leftflow___i_group_5_2_deallist_poitype__d__d___ab_b_food_57_purepoilist_extinfo__a__a___ab_trip_yidizhoubianyou__b__leftflow___ab_i_group_5_3_poidetaildeallist__a__b___ab_waimaizhanshi__b__b1___a20141120nanning__m1__leftflow___ab_pind';
+var commend_url =   'http://api.meituan.com/group/v1/recommend/homepage/city/1?__skck=40aaaf01c2fc4801b9c059efcd7aa146&__skcy=mrUZYo7999nH8WgTicdfzaGjaSQ=&__skno=51156DC4-B59A-4108-8812-AD05BF227A47&__skts=1434530933.303717&__skua=bd6b6e8eadfad15571a15c3b9ef9199a&__vhost=api.mobile.meituan.com&ci=1&client=iphone&limit=40&movieBundleVersion=100&msid=48E2B810-805D-4821-9CDD-D5C9E01BC98A2015-06-17-14-50363&offset=0&position=39.982223,116.310502&userId=10086&userid=10086&utm_campaign=AgroupBgroupD100Fab_chunceshishuju__a__a___b1junglehomepagecatesort__b__leftflow___ab_gxhceshi__nostrategy__leftflow___ab_gxhceshi0202__b__a___ab_pindaochangsha__a__leftflow___ab_xinkeceshi__b__leftflow___ab_gxtest__gd__leftflow___ab_gxh_82__nostrategy__leftflow___ab_pindaoshenyang__a__leftflow___i_group_5_2_deallist_poitype__d__d___ab_b_food_57_purepoilist_extinfo__a__a___ab_trip_yidizhoubianyou__b__leftflow___ab_i_group_5_3_poidetaildeallist__a__b___ab_waimaizhanshi__b__b1___a20141120nanning__m1__leftflow___ab_pind';
 
 var resultsCache = {
-	 shenbianData:{},
+	 dingdanData:{},
 };
 
 var LOADING = {};
 
-export default class Shenbian extends React.Component{
+export default class DingdanContent extends React.Component{
 
   	//timeoutID: (null: any),
 
@@ -30,6 +30,7 @@ export default class Shenbian extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            status: this.props.status,
             isLoading: false,
             isLoadingTail: false,
             dataSource: new ListView.DataSource({
@@ -41,24 +42,24 @@ export default class Shenbian extends React.Component{
     }
 
   	componentDidMount() {
-        this.getShenbianData();
+        this.getDingdanData();
   	}
 
-  	getShenbianData() {
+  	getDingdanData() {
   		  //this.timeoutID = null;
 
   		  // LOADING
-    		resultsCache.shenbianData = null;
+    		resultsCache.dingdanData = null;
     		this.setState({
       			isLoading: true,
       			isLoadingTail: false,
     		});
 
-    		fetch(shenbian_url)
+    		fetch(commend_url)
       			.then((response) => response.json())
       			.catch((error) => {
                 //console.log(1);
-        				resultsCache.shenbianData = undefined;
+        				resultsCache.dingdanData = undefined;
         				this.setState({
           					dataSource: this.getDataSource([]),
           					isLoading: false,
@@ -67,7 +68,7 @@ export default class Shenbian extends React.Component{
       			.then((responseData) => {
                 //console.log(22);
                 //console.log(responseData.data);
-        				resultsCache.shenbianData = responseData.data;
+        				resultsCache.dingdanData = responseData.data;
         				this.setState({
           					isLoading: false,
           					dataSource: this.getDataSource(responseData.data),
@@ -81,18 +82,18 @@ export default class Shenbian extends React.Component{
   	}
 
 		renderRow (
-	  		shenbianData: Object,
+	  		dingdanData: Object,
 	  		sectionID: number | string,
 	    	rowID: number | string,
 	    	highlightRowFunc: (sectionID: ?number | string, rowID: ?number | string) => void,
   	){
 				//console.log(this);
 				return (
-  	  			<ShenbianCell
-  	  					key = {shenbianData.id}
+  	  			<DingdanCell
+  	  					key = {dingdanData.id}
   	        		onHighlight={() => highlightRowFunc(sectionID, rowID)}
   	        		onUnhighlight={() => highlightRowFunc(null, null)}
-  	        		shenbianData={shenbianData}
+  	        		dingdanData={dingdanData}
   	  			/>
 	  		);
   	}
@@ -104,7 +105,7 @@ export default class Shenbian extends React.Component{
 		*/
 		render() {
 				var content = this.state.dataSource.getRowCount === 0 ?
-        		<NoShenbian
+        		<NoDingdan
         			isLoading = {this.state.isLoading}
         		/> :
         		<ListView
@@ -124,15 +125,15 @@ export default class Shenbian extends React.Component{
     }
 };
 
-class NoShenbian extends React.Component{
+class NoDingdan extends React.Component{
   	render() {
     		var text = '';
     		if (!this.props.isLoading) {
-    		    text = 'No Shenbian Data.';
+    		    text = 'No Dingdan Data.';
     		};
     		return (
       			<View style={[styles.container, styles.centerText]}>
-        				<Text style = {styles.noShenbianText}>{text}</Text>
+        				<Text style = {styles.noDingdanText}>{text}</Text>
       			</View>
     		)
   	}
@@ -147,7 +148,7 @@ var styles = StyleSheet.create({
   	centerText: {
       	alignItems: 'center',
     },
-    noShenbianText:{
+    noDingdanText:{
     		marginTop: 80,
     		color: '#888888',
     },

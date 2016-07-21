@@ -8,8 +8,17 @@ import getImageSource from './getImageSource';
 import getAdaptHeight from '../component/getAdaptHeight';
 import getAdaptWidth from '../component/getAdaptWidth';
 import Button from 'react-native-button';
+import { Actions } from 'react-native-router-flux';
 
 export default class DingdanCell extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            status: this.props.orderStatus
+        };
+    }
+
   	render() {
 
     		var TouchableElement = TouchableHighlight;
@@ -20,47 +29,47 @@ export default class DingdanCell extends React.Component{
 
     		return (
       			<View style = {styles.dingdanListBox}>
-        				<TouchableElement
-          					onPress = {this.props.onSelect}//$$
-          					onShowUnderlay = {this.props.onHighlight}
-          					onHideUnderlay = {this.props.onUnhighlight}>
-          					<View style = {styles.row}>
+      					<View style = {styles.row}>
 
-                        <View style = {styles.ddHeader}>
-                            <View style = {styles.ddShop}>
-                                <Image source = {require('../../images/dingdan/dingdan_shopLogo.png')} style = {styles.ddShopLogo} />
-                                <Text style = {styles.ddShopName}>四眼兔体验店（三灶店）</Text>
-                            </View>
-                            <View style = {styles.ddSendStatus}>
-                              <Text style = {styles.ddStatusText}>已送到</Text>
-                            </View>
+                    <View style = {styles.ddHeader}>
+                        <View style = {styles.ddShop}>
+                            <Image source = {require('../../images/dingdan/dingdan_shopLogo.png')} style = {styles.ddShopLogo} />
+                            <Text style = {styles.ddShopName}>四眼兔体验店（三灶店）</Text>
                         </View>
+                        <View style = {styles.ddSendStatus}>
+                          <Text style = {styles.ddStatusText}>待付款</Text>
+                        </View>
+                    </View>
 
+                    <Button onPress={Actions.dingdanMore} containerStyle={styles.ddMoreContainer} style = {styles.ddMoreButton}>
                         <View style = {styles.ddProduct}>
                             <View style = {styles.ddProImgBox}>
                                 <Image source = {require('../../images/dingdan/dingdan_product.png')} style = {styles.ddProImg} />
                             </View>
-                            <View style = {styles.ddProInfoBox}>
-                                <View style = {styles.ddProInfo}>
-                                    <Text style = {styles.ddProName} numberOfLines = {1}>什锦肉哨炒饭+鸡腿+煎蛋</Text>
-                                    <Text style = {styles.ddProSend}>四眼兔专送</Text>
-                                    <Text style = {styles.ddProDate}>04-09 09:23</Text>
-                                </View>
+                            <View style = {styles.ddProImgBox}>
+                                <Image source = {require('../../images/dingdan/dingdan_product.png')} style = {styles.ddProImg} />
                             </View>
-                            <View style = {styles.ddProPrice}>
-                                <Text style = {styles.ddProPriceNow}>￥23.00</Text>
-                                <Text style = {styles.ddProPriceDel}>￥30.00</Text>
+                            <View style = {styles.ddProImgBox}>
+                                <Image source = {require('../../images/dingdan/dingdan_product.png')} style = {styles.ddProImg} />
+                            </View>
+                            <View style = {styles.ddProMoreBox}>
+                                <Image source = {require('../../images/dingdan/icon_big_arrow_right.png')} style = {styles.proMoreIcon} />
                             </View>
                         </View>
+                    </Button>
 
-                        <View style = {styles.ddProHandle}>
-                            <Button containerStyle={[styles.ddProHandleBtn, styles.ddProCommentBtn]} style={[styles.ddProHandleBtnText,styles.ddProCommentBtnText]}>评价</Button>
-                            <Button containerStyle={styles.ddProHandleBtn} style={styles.ddProHandleBtnText}>确认收到</Button>
-                            <Button containerStyle={styles.ddProHandleBtn} style={styles.ddProHandleBtnText}>再来一单</Button>
-                        </View>
+                    <View style = {styles.ddProCalc}>
+                        <Text style = {styles.ddProNums}>4件商品</Text>
+                        <Text style = {styles.ddProPrice}>总计：</Text>
+                        <Text style = {styles.ddProCost}>￥36.00</Text>
+                    </View>
 
-          					</View>
-        				</TouchableElement>
+                    <View style = {styles.ddProHandle}>
+                        <Button onPress = {Actions.OrderCancel} containerStyle={styles.ddProHandleBtn} style={styles.ddProHandleBtnText}>申请取消</Button>
+                        <Button containerStyle={styles.ddProHandleBtn} style={styles.ddProHandleBtnText}>立即支付</Button>
+                    </View>
+
+      					</View>
       			</View>
     		)
   	}
@@ -107,13 +116,12 @@ var styles = StyleSheet.create({
     ddProduct: {
         flexDirection: 'row',
         marginTop: 10,
-        paddingLeft: 10,
-        paddingRight: 10,
         paddingTop: 5,
         paddingBottom: 5,
         backgroundColor: "#fafafa",
     },
     ddProImgBox: {
+        marginLeft: getAdaptWidth(10),
         width: getAdaptWidth(75),
         height: getAdaptHeight(75),
     },
@@ -121,47 +129,33 @@ var styles = StyleSheet.create({
         width: getAdaptWidth(75),
         height: getAdaptHeight(75),
     },
-    ddProInfoBox: {
-        flex: 1,
+    ddProMoreBox: {
+        flex: 1, justifyContent: 'center', alignItems: 'flex-end',
+        borderWidth: 0, borderColor: 'red',
     },
-    ddProInfo: {
-        flexDirection: 'column',
-        marginLeft: 13,
+    proMoreIcon: {
+        marginRight: getAdaptWidth(10), width: getAdaptWidth(13), height: getAdaptHeight(23),
     },
-    ddProName: {
-        fontSize: getAdaptHeight(13),
-        color: '#111111'
+
+    ddProCalc: {
+        flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center',
+        marginTop: getAdaptHeight(10), paddingTop: getAdaptHeight(10), paddingBottom: getAdaptHeight(10),
+        borderTopWidth: 0.5, borderTopColor: '#e5e5e5',
     },
-    ddProSend: {
-        marginTop: 10,
-        fontSize: getAdaptHeight(12),
-        color: '#a0a0a0',
-    },
-    ddProDate: {
-        marginTop: 10,
-        fontSize: getAdaptHeight(12),
-        color: '#a0a0a0'
+    ddProNums: {
+        color: '#111', fontSize: getAdaptHeight(13),
     },
     ddProPrice: {
-        width: 80,
-        flexDirection: 'column',
-        alignItems: 'flex-end'
+        marginLeft: getAdaptWidth(10), color: '#111', fontSize: getAdaptHeight(13),
     },
-    ddProPriceNow: {
-        fontSize: getAdaptHeight(16),
-        color: '#111111'
+    ddProCost: {
+        color: '#e60012', fontSize: getAdaptHeight(16), fontWeight: '400',
     },
-    ddProPriceDel: {
-        marginTop: 10,
-        fontSize: getAdaptHeight(16),
-        color: '#a0a0a0'
-    },
+
+
     ddProHandle: {
-        flexDirection: 'row',
-        alignItems: 'flex-end',
-        justifyContent: 'flex-end',
-        paddingTop: 12,
-        paddingBottom: 12,
+        flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end',
+        paddingBottom: getAdaptHeight(10),
     },
     ddProHandleBtn: {
         marginLeft: 10,
@@ -170,20 +164,19 @@ var styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 0.5,
-        borderColor: '#959595',
+        borderColor: '#00a0e9',
         borderRadius: 2,
         backgroundColor: 'white',
     },
-    ddProCommentBtn:{
-        borderColor: '#00a0e9',
-    },
     ddProHandleBtnText: {
         fontSize: getAdaptHeight(13),
-        color: '#111111',
+        color: '#00a0e9',
     },
-    ddProCommentBtnText: {
-        color: '#00a0e9'
-    },
+
+
+
+
+
 
 
 });

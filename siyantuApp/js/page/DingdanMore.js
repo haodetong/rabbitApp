@@ -1,17 +1,18 @@
 /*
-    订单 - 标签页
+    订单 - 配送状态、订单详情 - 聚合页
 */
 'use strict'
 import React from 'react';
 import {AppRegistry, Navigator, StyleSheet, Platform, ProgressBarAndroid, ListView, Text, Image, View, Animated} from 'react-native';
-import DingdanContent from './DingdanContent';
 import getAdaptHeight from '../component/getAdaptHeight';
 import getAdaptWidth from '../component/getAdaptWidth';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
+import DingdanSendStatus from './DingdanSendStatus';
+import DingdanDetail from './DingdanDetail';
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 
-export default class Dingdan extends React.Component{
+export default class DingdanMore extends React.Component{
 
   	//timeoutID: (null: any),
 
@@ -40,9 +41,8 @@ export default class Dingdan extends React.Component{
 										tabBarTextStyle = {{fontSize: 13}}
 										renderTabBar={() => <DefaultTabBar tabStyle = {{paddingBottom: 0,}} style = {{height: 40,  borderWidth: 0.5, borderTopWidth: 0, borderLeftWidth: 0, borderRightWidth: 0, borderBottomColor: '#ccc',}} underlineHeight = {2} underlineColor = '#00a0e9' />}
 								>
-										<DingdanContent status = 'notPay' tabLabel="待付款(8)" />
-										<DingdanContent status = 'notReceipt' tabLabel="待收货(6)" />
-										<DingdanContent status = 'notComment' tabLabel="待评价(5)" />
+										<DingdanSendStatus tabLabel="配送状态" />
+										<DingdanDetail tabLabel="订单详情" />
 								</ScrollableTabView>
 						</View>
         )

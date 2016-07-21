@@ -1,5 +1,5 @@
 /*
-    我的 - tab标签页
+    设置页
 */
 'use strict'
 import React from 'react';
@@ -13,7 +13,7 @@ import Login from './Login'
 
 var LOADING = {};
 
-export default class Wode extends React.Component{
+export default class SystemSetting extends React.Component{
 
   	//timeoutID: (null: any),
 
@@ -31,88 +31,18 @@ export default class Wode extends React.Component{
         };
     }
 
-    _onPressWodeSection() {
-        alert('press wode section.');
-    }
-
 		render() {
         return (
             <View style = {styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false}>
 
-                    <Button onPress={Actions.Ziliao} containerStyle={styles.BtnContainer} style = {styles.sectionButton}>
-                        <View style = {styles.wodeHeaderSection}>
-                            <View style = {styles.wodePhoto}>
-                                <Image source = {require('../../images/common/user_photo.png')} style = {styles.wodePhotoPic} />
-                            </View>
-                            <View style = {styles.wodeInfo}>
-                                <View style = {styles.wodeNameBox}><Text style = {styles.wodeName}>郝杰</Text></View>
-                                <View style = {styles.wodeSign}>
-                                    <Text style = {styles.wodePhone}>150****8722</Text>
-                                    <Image source = {require('../../images/common/icon_phone.png')} style = {styles.wodePhoneImg} />
-                                </View>
-                            </View>
-                            <View style = {styles.wodeRightBtnBox}>
-                                <Image source = {require('../../images/common/icon_arrow_right.png')} style = {styles.wodeRightBtnIcon}  />
-                            </View>
-                        </View>
-                    </Button>
-
-                    <View style = {styles.wodeSectionSpaces}></View>
-
-                    <Button onPress={Actions.Login} containerStyle={styles.BtnContainer} style = {styles.sectionButton}>
-                        <View style = {styles.wodeHeaderSection}>
-                            <View style = {styles.wodePhoto}>
-                                <Image source = {require('../../images/common/user_photo.png')} style = {styles.wodePhotoPic} />
-                            </View>
-                            <View style = {styles.loginBox}>
-                                <View style = {styles.loginNow}>
-                                    <Text style = {styles.loginTitle}>立即登录</Text>
-                                </View>
-                                <View style = {styles.loginTips}>
-                                    <Text style = {styles.loginTipsText}>登录后可享受更多特权</Text>
-                                </View>
-                            </View>
-                            <View style = {styles.wodeRightBtnBox}>
-                                <Image source = {require('../../images/common/icon_arrow_right.png')} style = {styles.wodeRightBtnIcon}  />
-                            </View>
-                        </View>
-                    </Button>
-
-                    <View style = {styles.wodeSectionSpaces}></View>
-
-                        <View style = {styles.orderSection}>
-                            <View style = {styles.orderMenusBox}>
-                                <Button onPress={Actions.pop} containerStyle={styles.orderBtnContainer} style = {styles.sectionButton}>
-                                    <View style = {styles.orderMenu}>
-                                        <Text style = {styles.orderMenuTit}>待付款</Text>
-                                        <Text style = {styles.orderMenuNums}>(6)</Text>
-                                    </View>
-                                </Button>
-                                <Button onPress={Actions.pop} containerStyle={styles.orderBtnContainer} style = {styles.sectionButton}>
-                                    <View style = {styles.orderMenu}>
-                                        <Text style = {styles.orderMenuTit}>待收货</Text>
-                                        <Text style = {styles.orderMenuNums}>(9)</Text>
-                                    </View>
-                                </Button>
-                                <Button onPress={Actions.pop} containerStyle={styles.orderBtnContainer} style = {styles.sectionButton}>
-                                    <View style = {styles.orderMenu}>
-                                        <Text style = {styles.orderMenuTit}>待评价</Text>
-                                        <Text style = {styles.orderMenuNums}>(10)</Text>
-                                    </View>
-                                </Button>
-                            </View>
-                        </View>
-
-                    <View style = {styles.wodeSectionSpaces}></View>
-
-                    <Button onPress={Actions.Myshaidan} containerStyle={styles.BtnContainer} style = {styles.sectionButton}>
+                    <Button onPress={Actions.pop} containerStyle={styles.BtnContainer} style = {styles.sectionButton}>
                         <View style = {styles.wodeSection}>
                             <View style = {styles.wodeIconBox}>
-                                <Image source = {require('../../images/wode/icon_shaidan.png')} style = {styles.shaidanIcon} />
+                                <Image source = {require('../../images/wode/icon_pwd.png')} style = {styles.pwdIcon} />
                             </View>
                             <View style = {styles.wodeTitleBox}>
-                                <Text style = {styles.wodeTitle}>我的晒单</Text>
+                                <Text style = {styles.wodeTitle}>密码修改</Text>
                             </View>
                             <View style = {styles.wodeRightBtnBox}>
                                 <Image source = {require('../../images/common/icon_arrow_right.png')} style = {styles.wodeRightBtnIcon}  />
@@ -122,48 +52,16 @@ export default class Wode extends React.Component{
 
                     <View style = {styles.separaterLine}></View>
 
-                    <Button onPress={Actions.MyCoupon} containerStyle={styles.BtnContainer} style = {styles.sectionButton}>
+                    <Button onPress={Actions.pop} containerStyle={styles.BtnContainer} style = {styles.sectionButton}>
                         <View style = {styles.wodeSection}>
                             <View style = {styles.wodeIconBox}>
-                                <Image source = {require('../../images/wode/icon_diyongquan.png')} style = {styles.diyongquanIcon} />
+                                <Image source = {require('../../images/wode/icon_notice.png')} style = {styles.noticeIcon} />
                             </View>
                             <View style = {styles.wodeTitleBox}>
-                                <Text style = {styles.wodeTitle}>优惠抵用券</Text>
+                                <Text style = {styles.wodeTitle}>晒单动态通知</Text>
                             </View>
-                            <View style = {styles.diyongquanNumsBox}>
-                                <Text style = {styles.diyongquanNums}>5张</Text>
-                            </View>
-                            <View style = {styles.wodeRightBtnBox}>
-                                <Image source = {require('../../images/common/icon_arrow_right.png')} style = {styles.wodeRightBtnIcon}  />
-                            </View>
-                        </View>
-                    </Button>
-
-                    <View style = {styles.wodeSectionSpaces}></View>
-
-                    <Button onPress={Actions.FoodCollect} containerStyle={styles.BtnContainer} style = {styles.sectionButton}>
-                        <View style = {styles.wodeSection}>
-                            <View style = {styles.wodeIconBox}>
-                                <Image source = {require('../../images/wode/icon_shoucang.png')} style = {styles.shoucangIcon} />
-                            </View>
-                            <View style = {styles.wodeTitleBox}>
-                                <Text style = {styles.wodeTitle}>美食收藏</Text>
-                            </View>
-                            <View style = {styles.wodeRightBtnBox}>
-                                <Image source = {require('../../images/common/icon_arrow_right.png')} style = {styles.wodeRightBtnIcon}  />
-                            </View>
-                        </View>
-                    </Button>
-
-                    <View style = {styles.separaterLine}></View>
-
-                    <Button onPress={Actions.MyReceiptAddress} containerStyle={styles.BtnContainer} style = {styles.sectionButton}>
-                        <View style = {styles.wodeSection}>
-                            <View style = {styles.wodeIconBox}>
-                                <Image source = {require('../../images/wode/icon_dizhi.png')} style = {styles.dizhiIcon} />
-                            </View>
-                            <View style = {styles.wodeTitleBox}>
-                                <Text style = {styles.wodeTitle}>管理收货地址</Text>
+                            <View style = {styles.statusBox}>
+                                <Text style = {styles.curStatus}>是</Text>
                             </View>
                             <View style = {styles.wodeRightBtnBox}>
                                 <Image source = {require('../../images/common/icon_arrow_right.png')} style = {styles.wodeRightBtnIcon}  />
@@ -176,10 +74,13 @@ export default class Wode extends React.Component{
                     <Button onPress={Actions.pop} containerStyle={styles.BtnContainer} style = {styles.sectionButton}>
                         <View style = {styles.wodeSection}>
                             <View style = {styles.wodeIconBox}>
-                                <Image source = {require('../../images/wode/icon_jifen.png')} style = {styles.jifenIcon} />
+                                <Image source = {require('../../images/wode/icon_night.png')} style = {styles.nightIcon} />
                             </View>
                             <View style = {styles.wodeTitleBox}>
-                                <Text style = {styles.wodeTitle}>积分商城</Text>
+                                <Text style = {styles.wodeTitle}>夜间免打扰</Text>
+                            </View>
+                            <View style = {styles.statusBox}>
+                                <Text style = {styles.curStatus}>是</Text>
                             </View>
                             <View style = {styles.wodeRightBtnBox}>
                                 <Image source = {require('../../images/common/icon_arrow_right.png')} style = {styles.wodeRightBtnIcon}  />
@@ -189,13 +90,16 @@ export default class Wode extends React.Component{
 
                     <View style = {styles.separaterLine}></View>
 
-                    <Button onPress={Actions.OnlineService} containerStyle={styles.BtnContainer} style = {styles.sectionButton}>
+                    <Button onPress={Actions.pop} containerStyle={styles.BtnContainer} style = {styles.sectionButton}>
                         <View style = {styles.wodeSection}>
                             <View style = {styles.wodeIconBox}>
-                                <Image source = {require('../../images/wode/icon_kefu.png')} style = {styles.kefuIcon} />
+                                <Image source = {require('../../images/wode/icon_msg.png')} style = {styles.msgIcon} />
                             </View>
                             <View style = {styles.wodeTitleBox}>
-                                <Text style = {styles.wodeTitle}>在线客服</Text>
+                                <Text style = {styles.wodeTitle}>新消息通知</Text>
+                            </View>
+                            <View style = {styles.statusBox}>
+                                <Text style = {styles.curStatus}>震动</Text>
                             </View>
                             <View style = {styles.wodeRightBtnBox}>
                                 <Image source = {require('../../images/common/icon_arrow_right.png')} style = {styles.wodeRightBtnIcon}  />
@@ -206,13 +110,19 @@ export default class Wode extends React.Component{
                     <View style = {styles.wodeSectionSpaces}></View>
 
                     <View style = {styles.wodeSection}>
-                        <View style = {styles.kefuPhoneBox}>
-                            <Text style = {styles.kefuPhone}>客服电话：88888888</Text>
+                        <View style = {styles.versionBox}>
+                            <Text style = {styles.versions}>当前版本：v1.01</Text>
                         </View>
                     </View>
 
-                    <View style = {styles.openTimeBox}>
-                        <Text style = {styles.openTime}>营业时间：9:00 - 23:00</Text>
+                    <View style = {styles.wodeSectionSpaces}></View>
+
+                    <View style = {styles.wodeSection}>
+                        <Button onPress={Actions.pop} containerStyle={styles.logoutBtnContainer} style = {styles.sectionButton}>
+                            <View style = {styles.logoutBox}>
+                                <Text style = {styles.logout}>退出当前登录</Text>
+                            </View>
+                        </Button>
                     </View>
 
                 </ScrollView>
@@ -351,31 +261,31 @@ var styles = StyleSheet.create({
         color: '#999', fontSize: getAdaptHeight(14),
     },
 
-    shaidanIcon: {
-        width: getAdaptWidth(18),
-        height: getAdaptHeight(16),
+    pwdIcon: {
+        width: getAdaptWidth(20),
+        height: getAdaptHeight(21),
     },
-    diyongquanIcon: {
-        width: getAdaptWidth(15),
-        height: getAdaptHeight(10),
+    noticeIcon: {
+        width: getAdaptWidth(20),
+        height: getAdaptHeight(21),
     },
-    diyongquanNumsBox: {
+    statusBox: {
         width: 40,
         alignItems: 'flex-end',
         borderWidth: 0,
         borderColor: 'red',
     },
-    diyongquanNums: {
+    curStatus: {
         fontSize: getAdaptHeight(13),
         color: '#00a0e9',
     },
-    shoucangIcon: {
-        width: getAdaptWidth(15),
-        height: getAdaptHeight(15),
+    nightIcon: {
+        width: getAdaptWidth(20),
+        height: getAdaptHeight(21),
     },
-    dizhiIcon: {
-        width: getAdaptWidth(13),
-        height: getAdaptHeight(17),
+    msgIcon: {
+        width: getAdaptWidth(20),
+        height: getAdaptHeight(21),
     },
     jifenIcon: {
         width: getAdaptWidth(16),
@@ -385,12 +295,23 @@ var styles = StyleSheet.create({
         width: getAdaptWidth(17),
         height: getAdaptHeight(15),
     },
-    kefuPhoneBox: {
+    versionBox: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center',
     },
-    kefuPhone: {
+    versions: {
+        color: '#00a0e9',
+        fontSize: getAdaptHeight(16),
+    },
+    logoutBtnContainer: {
+        flex: 1,
+    },
+    logoutBox: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    logout: {
         color: '#00a0e9',
         fontSize: getAdaptHeight(16),
     },

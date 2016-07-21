@@ -24,8 +24,9 @@ import getAdaptWidth from '../component/getAdaptWidth';
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 import Register from './Register';
-import {CustomSegmentedControl} from 'react-native-custom-segmented-control';
-
+import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
+import LoginByAccount from './LoginByAccount';
+import LoginByPhoneMessage from './LoginByPhoneMessage';
 
 export default class Login extends React.Component{
 
@@ -45,44 +46,21 @@ export default class Login extends React.Component{
         return (
             <View style={styles.container}>
                 <View style = {styles.pageBody}>
-                    <View style = {{ height: 50, borderWidth: 1, borderColor: 'red'}}>
-                        <CustomSegmentedControl
-                            style={{
-                                flex:1,
-                                backgroundColor: 'white',
-                                marginVertical: 8
-                            }}
-                            textValues={['ORDERS','PRODUCTS' ]}
-                            selected={0}
-                            segmentedStyle={{
-                                selectedLineHeight: 2,
-                                fontSize:17,
-                                fontWeight: 'bold', // bold, italic, regular (default)
-                                segmentBackgroundColor: 'transparent',
-                                segmentTextColor: '#7a92a5',
-                                segmentHighlightTextColor: '#7a92a599',
-                                selectedLineColor: '#00adf5',
-                                selectedLineAlign: 'bottom', // top/bottom/text
-                                selectedLineMode: 'text', // full/text
-                                selectedTextColor: 'black',
-                                selectedLinePaddingWidth: 30,
-                                segmentFontFamily: 'system-font-bold'
-                            }}
-                            animation={{
-                                duration: 0.7,
-                                damping: 0.5,
-                                animationType: 'middle-line',
-                                initialDampingVelocity: 0.4
-                            }}
-                            onSelectedWillChange={(event)=> {
-                            }}
-                            onSelectedDidChange={(event)=> {
-                            }}
-                        />
+                    <View style = {styles.logContainer}>
+                        <ScrollableTabView
+                            style={{marginTop: 0, borderWidth: 0, borderColor: 'red'}}
+                            tabBarActiveTextColor = '#00a0e9'
+                            tabBarInactiveTextColor = '#666'
+                            tabBarTextStyle = {{fontSize: 13}}
+                            renderTabBar={() => <DefaultTabBar tabStyle = {{paddingBottom: 0,}} style = {{height: 40,  borderWidth: 0.5, borderTopWidth: 0, borderLeftWidth: 0, borderRightWidth: 0, borderBottomColor: '#ccc',}} underlineHeight = {2} underlineColor = '#00a0e9' />}
+                        >
+                            <LoginByAccount tabLabel="账号登录" />
+                            <LoginByPhoneMessage tabLabel="短信验证登录" />
+                        </ScrollableTabView>
                     </View>
                 </View>
                 <View style = {styles.pageFooter}>
-                    <Button onPress={Actions.pop} containerStyle={styles.regBtnContainer} style = {styles.regButton}>
+                    <Button onPress={Actions.Register} containerStyle={styles.regBtnContainer} style = {styles.regButton}>
                         手机快速注册
                     </Button>
                 </View>
@@ -95,7 +73,7 @@ export default class Login extends React.Component{
 var styles = StyleSheet.create({
   	container: {
         flex:1,
-        backgroundColor: '#f4f4f4',
+        backgroundColor: '#fff',
     },
     pageBody: {
         flex: 9,
@@ -112,6 +90,12 @@ var styles = StyleSheet.create({
     },
     regButton: {
         color: '#00a0e9', fontSize: getAdaptHeight(16), fontWeight: '500',
+    },
+    logContainer: {
+        flex: 1, borderWidth: 0, borderColor: 'red'
+    },
+    logTabStyle: {
+        fontSize: getAdaptHeight(14),
     },
 
 });

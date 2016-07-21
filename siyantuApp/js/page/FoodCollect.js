@@ -1,5 +1,5 @@
 /*
-    九大分类 - 产品列表页
+    我的 - 标签页 - 美食收藏页
 */
 'use strict'
 import React, { Component } from 'react';
@@ -22,7 +22,6 @@ import getAdaptHeight from '../component/getAdaptHeight';
 import getAdaptWidth from '../component/getAdaptWidth';
 import ProsItems from '../component/ProsItems';
 import FooterShoppingBar from '../component/FooterShoppingBar';
-import ProsFilter from '../component/ProsFilter';
 
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
@@ -55,8 +54,6 @@ export default class ProLists extends React.Component{
                     </ScrollView>
                 </View>
 
-                <ProsFilter />
-
                 <View style = {styles.proFooter}>
                     <FooterShoppingBar />
                 </View>
@@ -71,12 +68,9 @@ var styles = StyleSheet.create({
         flex:1,
         backgroundColor: '#f4f4f4',
     },
-    proHeader: {
-        position: 'absolute', top: 0, left: 0, width: Dimensions.get('window').width,
-        backgroundColor: '#ffffff',borderWidth: 0, borderColor: 'green', flex: 1,
-    },
+
     proBody: {
-        flex: 1, marginTop: getAdaptHeight(43), marginBottom: getAdaptHeight(50),
+        flex: 1, marginBottom: getAdaptHeight(50),
         borderWidth: 0, borderColor: 'blue',
     },
     proFooter: {
