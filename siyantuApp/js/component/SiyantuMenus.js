@@ -3,68 +3,14 @@
 */
 'use strict'
 import React from 'react';
-import {AppRegistry, Navigator, StyleSheet, TouchableHighlight, Text, Image, View,Animated} from 'react-native';
+import {AppRegistry, Navigator, StyleSheet, AsyncStorage, TouchableHighlight, Text, Image, View,Animated} from 'react-native';
 import getAdaptHeight from '../component/getAdaptHeight';
 import getAdaptWidth from '../component/getAdaptWidth';
 import Button from 'react-native-button';
 import {Actions} from 'react-native-router-flux';
-
-var menuLine1 = [
-    {
-        img : require('../../images/waimai/icon_menu_zaocan.png'),
-        text : '醒晨早餐',
-        link : 'http://3c.m.tmall.com'
-    },
-    {
-        img : require('../../images/waimai/icon_menu_xiawucha.png'),
-        text : '下午茶',
-        link : 'http://3c.m.tmall.com'
-    },
-    {
-        img : require('../../images/waimai/icon_menu_zhongcan.png'),
-        text : '中式餐品',
-        link : 'http://3c.m.tmall.com'
-    },
-    {
-        img : require('../../images/waimai/icon_menu_xican.png'),
-        text : '西式餐品',
-        link : 'http://3c.m.tmall.com'
-    },
-    {
-        img : require('../../images/waimai/icon_menu_mianshi.png'),
-        text : '经典面食',
-        link : 'http://3c.m.tmall.com'
-    }
-];
-
-var menuLine2 = [
-    {
-        img : require('../../images/waimai/icon_menu_xiaochi.png'),
-        text : '特色小吃',
-        link : 'http://3c.m.tmall.com'
-    },
-    {
-        img : require('../../images/waimai/icon_menu_tianpin.png'),
-        text : '糖水甜品',
-        link : 'http://3c.m.tmall.com'
-    },
-    {
-        img : require('../../images/waimai/icon_menu_biandang.png'),
-        text : '快捷便当',
-        link : 'http://3c.m.tmall.com'
-    },
-    {
-        img : require('../../images/waimai/icon_menu_fengwei.png'),
-        text : '南亚风味',
-        link : 'http://3c.m.tmall.com'
-    },
-    {
-        img : '',
-        text : '',
-        link : ''
-    }
-];
-
+import MenuItemBlock from './MenuItemBlock';
+import Util from '../util/util';
+import Service from '../util/service';
 
 export default class SiyantuMenus extends React.Component{
 
@@ -78,36 +24,91 @@ export default class SiyantuMenus extends React.Component{
   constructor(props){
       super(props);
       this.state = {
-          //text: '搜索关键词',
-      };
+          isloading: true,
+          menuItem01: [],
+          menuItem02: [],
+          menuItems: []
+      }
   }
 
-	renderItems(data){
-  		return data.map(function(items,i){
-          return (
-      				<View key={i} style = {styles.boxtd}>
-                  <Button onPress={()=>Actions.productLists({title:items.text})} containerStyle={styles.menuContainer} style = {styles.menuButton}>
-                      <View style = {styles.boxtdWrap}>
-                          <Image source={items.img} style={styles.cardImg} />
-            					    <Text style = {styles.cardText}>{items.text}</Text>
-                      </View>
-                  </Button>
-      				</View>
-    			)
-  		});
-	}
+  componentDidMount() {
+      var that = this;
+      AsyncStorage.getItem('menus', function(err, menus){
+          if(!err && menus){
+              that.setState({
+                  menuItems: JSON.parse(menus)
+              });
+          }else{
+              //获取分类导航栏
+              var path = Service.host + Service.getMenus;
+              Util.post(path, {
+                key: Util.key
+              }, function(data){
+                if(data.status)
+                {
+                    AsyncStorage.setItem('menus', JSON.stringify(data.data) ,function(err){
+                        if(err){
+                            console.log('store menus error');
+                        }
+                    })
+                    that.setState({
+                      menuItems: data.data
+                    });
+                }
+              })
+          }
+          that._renderMenuBlock();
+      })
+
+  }
+
+  _renderMenuBlock() {
+      var that = this;
+      var menuItem01 = [];
+      var menuItem02 = [];
+      var menuItems = this.state.menuItems;
+      for(var i = 0; i < 5; i++) {
+          menuItem01.push(
+              <MenuItemBlock
+                  key = {i}
+                  data = {menuItems[i]}
+              />
+          )
+      }
+      for(var i = 5; i < menuItems.length; i++) {
+          menuItem02.push(
+              <MenuItemBlock
+                  key = {i}
+                  data = {menuItems[i]}
+              />
+          )
+      }
+
+      that.setState({
+          menuItem01: menuItem01,
+          menuItem02: menuItem02,
+          isloading: false,
+      });
+
+  }
 
 	render(){
   		return (
-    			<View style = {styles.container}>
-      				<View style = {styles.boxtr}>
-      					   {this.renderItems(menuLine1)}
-      				</View>
-      				<View style = {styles.boxtr}>
-      					   {this.renderItems(menuLine2)}
-      				</View>
-    			</View>
+        			<View>
+                  {!this.state.isloading ?
+                      <View style = {styles.container}>
+                          <View style = {styles.boxtr}>
+                  				    {this.state.menuItem01}
+                  				</View>
+                  				<View style = {styles.boxtr}>
+                              {this.state.menuItem02}
+                  				</View>
+                      </View>
+                      : null
+                  }
+        			</View>
   		)
+
 	}
 
 };
@@ -120,27 +121,9 @@ var styles = StyleSheet.create({
   	},
   	boxtr:{
     		flexDirection:'row',
-    		justifyContent:'center',
+    		justifyContent:'flex-start',
     		paddingTop: getAdaptHeight(20),
         paddingLeft : 5,
         paddingRight: 5,
-  	},
-  	boxtd:{
-        flex:1,
-  	},
-    boxtdWrap: {
-        flex:1,
-        flexDirection:'column',
-        justifyContent:'center',
-        alignItems:'center',
-    },
-  	cardImg:{
-    		width: getAdaptWidth(43),
-    		height: getAdaptHeight(43),
-  	},
-  	cardText:{
-    		color:'#666666',
-    		fontSize: getAdaptHeight(11),
-    		marginTop:5.5,
   	},
 });
