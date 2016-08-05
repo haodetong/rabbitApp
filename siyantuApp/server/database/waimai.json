@@ -1,0 +1,38 @@
+[
+    {
+        "img": "/images/waimai/icon_menu_zaocan.png",
+        "text": "醒晨早餐"
+    },
+    {
+        "img" : "/images/waimai/icon_menu_xiawucha.png",
+        "text" : "下午茶"
+    },
+    {
+        "img" : "/images/waimai/icon_menu_zhongcan.png",
+        "text" : "中式餐品"
+    },
+    {
+        "img" : "/images/waimai/icon_menu_xican.png",
+        "text" : "西式餐品"
+    },
+    {
+        "img" : "/images/waimai/icon_menu_mianshi.png",
+        "text" : "经典面食"
+    },
+    {
+        "img" : "/images/waimai/icon_menu_xiaochi.png",
+        "text" : "特色小吃"
+    },
+    {
+        "img" : "/images/waimai/icon_menu_tianpin.png",
+        "text" : "糖水甜品"
+    },
+    {
+        "img" : "/images/waimai/icon_menu_biandang.png",
+        "text" : "快捷便当"
+    },
+    {
+        "img" : "/images/waimai/icon_menu_fengwei.png",
+        "text" : "南亚风味"
+    }
+]
