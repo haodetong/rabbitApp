@@ -56,18 +56,21 @@ const reducerCreate = params=>{
 };
 
 // define this based on the styles/dimensions you use
-const getSceneStyle = function (props) {
-    return {
-        flex: 1,
-        marginTop: props.hideNavBar ? 0 : 64,
-        marginBottom: props.hideTabBar ? 0 : 49.5,
-        backgroundColor: '#ffffff',
-        shadowColor: null,
-        shadowOffset: null,
-        shadowOpacity: null,
-        shadowRadius: null,
-    };
-}
+const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
+  const style = {
+    flex: 1,
+    backgroundColor: '#fff',
+    shadowColor: null,
+    shadowOffset: null,
+    shadowOpacity: null,
+    shadowRadius: null,
+  };
+  if (computedProps.isActive) {
+    style.marginTop = computedProps.hideNavBar ? 0 : 64;
+    style.marginBottom = computedProps.hideTabBar ? 0 : 50;
+  }
+  return style;
+};
 
 export default class Route extends React.Component {
     testtitle() {
